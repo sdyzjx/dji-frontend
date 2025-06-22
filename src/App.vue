@@ -1,6 +1,6 @@
 <template>
   <div id="main-layout" ref="mainLayoutRef">
-    <SidePanel class="panel left-panel" title="左侧数据 (MQTT)" :data="leftPanelData" />
+    <SidePanel class="panel left-panel" title="飞机数据" :data="leftPanelData" />
 
     <div class="center-content">
       <VideoPlayer :stream-url="currentStreamUrl" />
@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <SidePanel class="panel right-panel" title="右侧数据 (MQTT)" :data="rightPanelData" />
+    <SidePanel class="panel right-panel" title="位置数据" :data="rightPanelData" />
   </div>
 </template>
 
@@ -86,7 +86,7 @@ onMounted(() => {
     
     // (可选) 为了演示，每5秒发布一条测试消息
     setInterval(() => {
-      client.publish(LEFT_PANEL_TOPIC, `左侧面板更新于: ${new Date().toLocaleTimeString()}`);
+      client.publish(LEFT_PANEL_TOPIC, `时间: ${new Date().toLocaleTimeString()}`);
       client.publish(RIGHT_PANEL_TOPIC, JSON.stringify({ sensor: 'T-800', value: (Math.random() * 100).toFixed(2), unit: '°C' }, null, 2));
     }, 5000)
   });
@@ -117,8 +117,9 @@ html, body, #app {
   padding: 0;
   height: 100%;
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  overflow: hidden; /* 保持隐藏，防止意外的滚动条 */
+
 }
+
 
 #main-layout {
   display: flex;
