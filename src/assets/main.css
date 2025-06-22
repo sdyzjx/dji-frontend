@@ -1,10 +1,12 @@
 @import './base.css';
 
+/* 更新 #app 为一个简单的容器 */
 #app {
-  max-width: 1280px;
+  max-width: 100%; /* 允许全宽 */
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0; /* 移除内边距 */
   font-weight: normal;
+  height: 100%;
 }
 
 a,
@@ -21,15 +23,17 @@ a,
   }
 }
 
+/* 移除旧的、与新布局冲突的 grid 布局 */
 @media (min-width: 1024px) {
   body {
-    display: flex;
-    place-items: center;
+    /* 如果不需要，可以移除这些样式 */
+    /* display: flex; */
+    /* place-items: center; */
   }
 
-  #app {
+  /* #app {
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
-  }
+  } */
 }
