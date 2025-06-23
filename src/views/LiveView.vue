@@ -2,7 +2,7 @@
     <div id="main-layout" ref="mainLayoutRef">
       <MqttController @update:left-data="onLeftDataUpdate" @update:right-data="onRightDataUpdate" />
       
-      <SidePanel class="panel left-panel" title="飞机数据" :data="leftPanelData" />
+      <SidePanel class="panel left-panel" title="遥控器/机场数据" :data="leftPanelData" />
   
       <div class="center-content">
         <VideoPlayer :stream-url="currentStreamUrl" />
@@ -20,7 +20,7 @@
         </div>
       </div>
   
-      <SidePanel class="panel right-panel" title="位置数据" :data="rightPanelData" />
+      <SidePanel class="panel right-panel" title="无人机数据" :data="rightPanelData" />
     </div>
   </template>
   
