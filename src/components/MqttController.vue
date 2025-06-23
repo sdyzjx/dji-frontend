@@ -9,11 +9,11 @@ let intervalId = null;
 
 onMounted(() => {
   // --- MQTT 连接设置 ---
-  const MQTT_BROKER_URL = 'ws://broker.emqx.io:8083/mqtt'; // 公共测试 Broker
+  const MQTT_BROKER_URL = 'ws://0.0.0.0:8083/mqtt'; // 公共测试 Broker
   client = mqtt.connect(MQTT_BROKER_URL);
 
-  const LEFT_PANEL_TOPIC = 'vue-dashboard/data/left';
-  const RIGHT_PANEL_TOPIC = 'vue-dashboard/data/right';
+  const LEFT_PANEL_TOPIC = 'thing/product/5YSZM150030540/osd';
+  const RIGHT_PANEL_TOPIC = 'thing/product/1581F5FJD241900D0U32/osd';
 
   client.on('connect', () => {
     console.log('MQTT 连接成功!');
@@ -28,20 +28,26 @@ onMounted(() => {
     });
     
     // (可选) 为了演示，每5秒发布一条测试消息
-    intervalId = setInterval(() => {
-      if (client && client.connected) {
-        client.publish(LEFT_PANEL_TOPIC, `时间: ${new Date().toLocaleTimeString()}`);
-        client.publish(RIGHT_PANEL_TOPIC, JSON.stringify({ sensor: 'T-800', value: (Math.random() * 100).toFixed(2), unit: '°C' }, null, 2));
-      }
-    }, 5000);
+    
   });
 
   client.on('message', (topic, message) => {
     const messageString = message.toString();
-    if (topic === LEFT_PANEL_TOPIC) {
-      emit('update:left-data', messageString);
-    } else if (topic === RIGHT_PANEL_TOPIC) {
-      emit('update:right-data', messageString);
+    try {
+      const jsonData = JSON.parse(messageString);
+      // 根据主题分发解析后的JSON数据
+      if (topic === LEFT_PANEL_TOPIC) {
+        emit('update:left-data', jsonData);
+      } else if (topic === RIGHT_PANEL_TOPIC) {
+        emit('update:right-data', jsonData);
+      }
+    } catch (e) {
+      // 如果解析失败，则作为普通字符串分发
+      if (topic === LEFT_PANEL_TOPIC) {
+        emit('update:left-data', messageString);
+      } else if (topic === RIGHT_PANEL_TOPIC) {
+        emit('update:right-data', messageString);
+      }
     }
   });
 
