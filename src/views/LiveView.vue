@@ -50,7 +50,7 @@
   
   // --- 视频流数据 ---
   const streamSources = ref([
-    { name: '测试流 1', url: 'http://10.191.32.14:8080/live/test123.flv' },
+    { name: '测试流 1', url: 'http://117.50.176.63:8080/live/test123.flv' },
     { name: '测试流 2', url: 'http://your_media_server_ip:port/live/stream2.flv' },
     { name: '公开测试流', url: 'https://sf1-hscdn-tos.pstatp.com/obj/media-fe/xgplayer_doc_video/flv/v-20220623-204310-579.flv' }
   ]);

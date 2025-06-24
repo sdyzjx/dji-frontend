@@ -9,7 +9,7 @@ let intervalId = null;
 
 onMounted(() => {
   // --- MQTT 连接设置 ---
-  const MQTT_BROKER_URL = 'ws://0.0.0.0:8083/mqtt'; // 公共测试 Broker
+  const MQTT_BROKER_URL = 'ws://117.50.176.63:8083/mqtt'; // 公共测试 Broker
   client = mqtt.connect(MQTT_BROKER_URL);
 
   const LEFT_PANEL_TOPIC = 'thing/product/5YSZM150030540/osd';
