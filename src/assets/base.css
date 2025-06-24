@@ -84,3 +84,20 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+body::after {
+    content: '';
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    width: 200px;
+    height: 200px;
+    /* 更新这里的url为本地图片路径 */
+    background-image: url('@/assets/Fuzhou_University_logo.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left bottom;
+    opacity: 0.5;
+    z-index: 9999;
+    pointer-events: none;
+}

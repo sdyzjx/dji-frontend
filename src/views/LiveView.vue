@@ -51,10 +51,10 @@
   // --- 视频流数据 ---
   const streamSources = ref([
     { name: '测试流 1', url: 'http://117.50.176.63:8080/live/test123.flv' },
-    { name: '测试流 2', url: 'http://your_media_server_ip:port/live/stream2.flv' },
+    { name: '测试流 2', url: 'http://117.50.176.63:8080/live/ai-out.flv' },
     { name: '公开测试流', url: 'https://sf1-hscdn-tos.pstatp.com/obj/media-fe/xgplayer_doc_video/flv/v-20220623-204310-579.flv' }
   ]);
-  const currentStreamUrl = ref(streamSources.value[-1]?.url); // 初始化为空或第一个
+  const currentStreamUrl = ref(streamSources.value[0]?.url); // 初始化为空或第一个
     const currentStreamName = ref('');
 
     function switchStream(url, name) {
